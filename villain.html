@@ -1,49 +1,46 @@
 <!doctype html>
 <html>
   <head>
-    <title>Villains by Poornima</title>
+    <title>Villains by Poornima Kallam</title>
   </head>
   <body>
-    <h2>Getting input</h2>
+    <h1>Villains by Poornima Kallam</h1>
 
-    <form>
-      <label for="form1_age">What is your age </label>
-      <input
-        type="number"
-        id="form1_age"
-        name="form1_age"
-        min="10"
-        max="50"
-        step="2"
-        value="30"
-      />
-      <br />
+    <!-- Form -->
+    <label for="secret">Funny Man:</label>
+    <input type="password" id="secret" value="Joker" />
 
-      <label for="form1_nick">What is your nickname </label>
-      <input type="text" id="form1_nick" name="form1_nick" autofocus /> <br />
+    <br /><br />
 
-      <input
-        type="button"
-        onclick="resolveForm()"
-        value="Get values from form"
-      />
-    </form>
+    <label for="guess">Guess the villain:</label>
+    <input type="text" id="guess" />
 
-    <p id="result">This text will be replaced</p>
+    <br /><br />
+
+    <button onclick="checkVillain()">Check the guess</button>
+
+    <!-- Results -->
+    <p id="result"></p>
 
     <script>
-      function resolveForm() {
-        console.log("Getting form values");
-        age = document.getElementById("form1_age").value;
-        nick = document.getElementById("form1_nick").value;
-        confirmed = confirm("Are these the values? " + age + " and " + nick);
+      // Global variables
+      let caught = 0;
+      let gotAway = 0;
 
-        out = document.getElementById("result");
-        if (confirmed) {
-          out.innerHTML = "Values were confirmed";
+      function checkVillain() {
+        let secretValue = document.getElementById("secret").value;
+        let guessValue = document.getElementById("guess").value;
+
+        if (secretValue === guessValue) {
+          caught++;
+          alert("You caught them");
         } else {
-          out.innerHTML = "Values were not confirmed";
+          gotAway++;
+          alert("Maybe next time");
         }
+
+        document.getElementById("result").innerHTML =
+          "Caught: " + caught + " | Got Away: " + gotAway;
       }
     </script>
   </body>
